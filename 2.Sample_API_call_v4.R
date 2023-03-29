@@ -19,15 +19,15 @@ pacman::p_load("stringr","sofa","janitor","haven","readxl", "purrr","hablar",
 ## Working directory setup -----
 
 
-file_path <- "/Dropbox (Geopoll)/Account Management - ops/FAO/COVID agricultural livelihoods modules/Data/API Upload/Data"
-
-#Capture different paths where drive is different
-
-if(file.exists(paste0("~/..",file_path))) {setwd(paste0("~/..",file_path))} 
-if(file.exists(paste0("D:",file_path))) {setwd(paste0("D:",file_path))}
-if(file.exists(paste0("E:",file_path))) {setwd(paste0("E:",file_path))}
-
-getwd()
+# file_path <- "/Dropbox (Geopoll)/Account Management - ops/FAO/COVID agricultural livelihoods modules/Data/API Upload/Data"
+# 
+# #Capture different paths where drive is different
+# 
+# if(file.exists(paste0("~/..",file_path))) {setwd(paste0("~/..",file_path))} 
+# if(file.exists(paste0("D:",file_path))) {setwd(paste0("D:",file_path))}
+# if(file.exists(paste0("E:",file_path))) {setwd(paste0("E:",file_path))}
+# 
+# getwd()
 
 #Selection filter ------
 
@@ -77,12 +77,11 @@ dt_x <- jsonlite::fromJSON(url_link)
 #Convert to a dataframe
 dt_z <- dt_x$rows$doc
 
-dt_z_1 <- dt_z
 
 #Save to excel if need be
-file_name <- paste0("GeoPoll_HHData_country_", format(Sys.Date(),"%Y%m%d"),".xlsx")
+file_name <- paste0("GeoPoll_HHData_country_",value ,format(Sys.Date(),"%Y%m%d"),".xlsx")
 
-openxlsx::write.xlsx(dt_z_1, file_name, colWidth = "auto")
+openxlsx::write.xlsx(dt_z, file_name, colWidth = "auto")
 
 
 #Change locale back to english
